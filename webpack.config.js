@@ -1,25 +1,20 @@
 module.exports = {
-  "output": {
-    "filename": "[name].pack.js"
+  mode: 'development', // Set mode to 'development'
+  output: {
+    filename: '[name].pack.js'
   },
-  "entry": {
-    "index": "./index"
+  entry: {
+    index: './src/index.ts'
   },
-  "resolve": {
-    "extensions": [
-      ".ts",
-      ".js",
-      ".json"
-    ]
+  resolve: {
+    extensions: ['.ts', '.js', '.json']
   },
-  "module": {
-    "rules": [
+  module: {
+    rules: [
       {
-        "use": {
-          "loader": "ts-loader"
-        },
-        "exclude": /node_modules/,
-        "test": /\.ts$/
+        test: /\.ts$/,
+        use: 'ts-loader',
+        exclude: /node_modules/
       }
     ]
   }
