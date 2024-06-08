@@ -1,5 +1,7 @@
 {
     "compilerOptions": {
+      "allowImportingTsExtensions": true,
+      "noEmit": true,
       "target": "es5",
       "module": "commonjs",
       "strict": true,
@@ -8,7 +10,7 @@
     },
     "include": [
       "src/index.ts"
-, "index.ts"    ],
+, "src/index.ts"    ],
     "exclude": [
       "./dist"
     ]

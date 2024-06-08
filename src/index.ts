@@ -5,7 +5,7 @@
 
 const propertyContainer = document.querySelector('.properties')
 
-import { showReviewTotal, populateUser } from './utils'
+import { showReviewTotal, populateUser } from './utils.ts'
 let isOpen: boolean
 
 // Reviews
@@ -118,7 +118,7 @@ for (let i = 0; i < properties.length; i++) {
     const image = document.createElement('img')
     image.setAttribute('src', properties[i].image)
     card.appendChild(image)
-    propertyContainer?.appendChild(card)
+    propertyContainer.appendChild(card)
 }
 
 
