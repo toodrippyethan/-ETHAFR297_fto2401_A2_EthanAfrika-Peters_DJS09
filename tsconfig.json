@@ -7,8 +7,8 @@
       "esModuleInterop": true
     },
     "include": [
-      "src/**/index.ts"
-    ],
+      "src/index.ts"
+, "index.ts"    ],
     "exclude": [
       "./dist"
     ]
