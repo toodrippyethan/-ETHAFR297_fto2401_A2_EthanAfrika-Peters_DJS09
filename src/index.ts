@@ -1,54 +1,47 @@
-// Add the properties to the Dashboard
-// This is a continuation of the Challenge, in which you are asked to add
-// the 3 properties image and title to the dashboard based on the 
-// properties array
+// Union Types Challenge
+// 1. Fix the function to show the price per night for each property card only
+// if isLoggedIn is true, or the you object has Permissions. (all permissions should work)
+// 2. See what happens when a null object to be passed to the you objects permissions.
 
+import { showReviewTotal, populateUser } from './utils'
+import { Permissions , LoyaltyUser } from './enums'
 const propertyContainer = document.querySelector('.properties')
+const footer = document.querySelector('.footer')
 
-import { showReviewTotal, populateUser } from './utils.ts'
-let isOpen: boolean
+let isLoggedIn: boolean
 
 // Reviews
-const reviews : { 
-    name: string; 
-    stars: number; 
-    loyaltyUser: boolean; 
-    date: string
-    }[] = [
+const reviews : any[] = [
     {
         name: 'Sheia',
         stars: 5,
-        loyaltyUser: true,
+        loyaltyUser: LoyaltyUser.GOLD_USER,
         date: '01-04-2021'
     },
     {
         name: 'Andrzej',
         stars: 3,
-        loyaltyUser: false,
+        loyaltyUser: LoyaltyUser.BRONZE_USER,
         date: '28-03-2021'
     },
     {
         name: 'Omar',
         stars: 4,
-        loyaltyUser: true,
-        date: '27-03-2021'
+        loyaltyUser: LoyaltyUser.SILVER_USER,
+        date: '27-03-2021',
+        description: 'Great hosts, location was a bit further than said.'
     },
 ]
 
-// User
-const you: {
-    firstName: string;
-    lastName: string;
-    isReturning: boolean;
-    age: number;
-    stayedAt: string[]
-} = {
+const you = {
     firstName: 'Bobby',
     lastName: 'Brown',
+    permissions: Permissions.ADMIN,
     isReturning: true,
     age: 35,
     stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']
 }
+
 
 // Array of Properties
 const properties : {
@@ -61,7 +54,7 @@ const properties : {
         code: number;
         country: string;
     };
-    contact: string;
+    contact: [ number, string ];
     isAvailable: boolean;
 }[] = [
     {
@@ -74,7 +67,7 @@ const properties : {
             code: 45632,
             country: 'Colombia'
         },
-        contact: 'marywinkle@gmail.com',
+        contact: [+112343823978921, 'marywinkle@gmail.com'],
         isAvailable: true  
     },
     {
@@ -87,7 +80,7 @@ const properties : {
             code: 343903,
             country: 'Poland'
         },
-        contact: 'garydavis@hotmail.com',
+        contact: [+1298239028490830, 'garydavis@hotmail.com'],
         isAvailable: false 
     },
     {
@@ -100,17 +93,28 @@ const properties : {
             code: 35433,
             country: 'United Kingdom',
         },
-        contact: 'andyluger@aol.com',
+        contact: [+34829374892553, 'andyluger@aol.com'],
         isAvailable: true
     }
 ]
 
 // Functions
 showReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser)
-
 populateUser(you.isReturning, you.firstName)
 
-//Add the properties
+let authorityStatus : any
+
+isLoggedIn = false
+
+function showDetails(authorityStatus: boolean | Permissions, element : HTMLDivElement, price: number) {
+   if (authorityStatus) {
+       const priceDisplay = document.createElement('div')
+       priceDisplay.innerHTML = price.toString() + '/night'
+       element.appendChild(priceDisplay)
+   }
+}
+
+// Add the properties
 for (let i = 0; i < properties.length; i++) {
     const card = document.createElement('div')
     card.classList.add('card')
@@ -119,6 +123,9 @@ for (let i = 0; i < properties.length; i++) {
     image.setAttribute('src', properties[i].image)
     card.appendChild(image)
     propertyContainer.appendChild(card)
+    showDetails(you.permissions, card, properties[i].price)
 }
 
+let currentLocation : [string, string, number] = ['London', '11.03', 17]
+footer.innerHTML = currentLocation[0] + ' ' + currentLocation[1] + ' ' + currentLocation[2] + '°'
 
