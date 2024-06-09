@@ -14,20 +14,54 @@
 /*!**********************!*\
   !*** ./src/index.ts ***!
   \**********************/
-/***/ (() => {
+/***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
-eval("\n// Object Types\n// In this scrim, based on what we just learnt, can you change userName to firstName, then\n// add an age and lastName to the 'you' Object, making sure to account for it in the Specialised\n// Object for defining its structure.\nvar returningUserDisplay = document.querySelector('#returning-user');\nvar userNameDisplay = document.querySelector('#user');\nvar reviewTotalDisplay = document.querySelector('#reviews');\nvar isOpen;\nvar reviews = [\n    {\n        name: 'Sheia',\n        stars: 5,\n        loyaltyUser: true,\n        date: '01-04-2021'\n    },\n    {\n        name: 'Andrzej',\n        stars: 3,\n        loyaltyUser: false,\n        date: '28-03-2021'\n    },\n    {\n        name: 'Omar',\n        stars: 4,\n        loyaltyUser: true,\n        date: '27-03-2021'\n    },\n];\nfunction showReviewTotal(value, reviewer, isLoyalty) {\n    var iconDisplay = isLoyalty ? '⭐' : '';\n    reviewTotalDisplay.innerHTML = 'review total ' + value.toString() + '| last reviewed by ' + reviewer + ' ' + iconDisplay;\n}\nshowReviewTotal(reviews.length, reviews[0].name, reviews[0].loyaltyUser);\nvar you = {\n    firstName: 'Bobby',\n    lastName: 'Brown',\n    isReturning: true,\n    age: 35\n};\nconsole.log(you.userName);\nfunction populateUser(isReturning, userName) {\n    if (isReturning) {\n        returningUserDisplay.innerHTML = 'back';\n    }\n    userNameDisplay.innerHTML = userName;\n}\npopulateUser(you.isReturning, you.userName);\n\n\n//# sourceURL=webpack://project/./src/index.ts?");
+eval("\n// Object Types Challenge\n// Based on what we discussed we need to make up our Property Objects and array,\n// can you create that array, making sure to assign the correct Types?\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nvar utils_1 = __webpack_require__(/*! ./utils */ \"./src/utils.ts\");\nvar isOpen;\n// Reviews\nvar reviews = [\n    {\n        name: 'Sheia',\n        stars: 5,\n        loyaltyUser: true,\n        date: '01-04-2021'\n    },\n    {\n        name: 'Andrzej',\n        stars: 3,\n        loyaltyUser: false,\n        date: '28-03-2021'\n    },\n    {\n        name: 'Omar',\n        stars: 4,\n        loyaltyUser: true,\n        date: '27-03-2021'\n    },\n];\n// User\nvar you = {\n    firstName: 'Bobby',\n    lastName: 'Brown',\n    isReturning: true,\n    age: 35,\n    stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow']\n};\n//Properties\nvar properties = [\n    {}\n];\n// Functions\n(0, utils_1.showReviewTotal)(reviews.length, reviews[0].name, reviews[0].loyaltyUser);\n(0, utils_1.populateUser)(you.isReturning, you.firstName);\n\n\n//# sourceURL=webpack://project/./src/index.ts?");
+
+/***/ }),
+
+/***/ "./src/utils.ts":
+/*!**********************!*\
+  !*** ./src/utils.ts ***!
+  \**********************/
+/***/ ((__unused_webpack_module, exports) => {
+
+eval("\nObject.defineProperty(exports, \"__esModule\", ({ value: true }));\nexports.populateUser = exports.showReviewTotal = void 0;\nvar reviewTotalDisplay = document.querySelector('#reviews');\nvar returningUserDisplay = document.querySelector('#returning-user');\nvar userNameDisplay = document.querySelector('#user');\nfunction showReviewTotal(value, reviewer, isLoyalty) {\n    var iconDisplay = isLoyalty ? '⭐' : '';\n    reviewTotalDisplay.innerHTML = 'review total ' + value.toString() + '| last reviewed by ' + reviewer + ' ' + iconDisplay;\n}\nexports.showReviewTotal = showReviewTotal;\nfunction populateUser(isReturning, userName) {\n    if (isReturning == true) {\n        returningUserDisplay.innerHTML = 'back';\n    }\n    userNameDisplay.innerHTML = userName;\n}\nexports.populateUser = populateUser;\n\n\n//# sourceURL=webpack://project/./src/utils.ts?");
 
 /***/ })
 
 /******/ 	});
 /************************************************************************/
+/******/ 	// The module cache
+/******/ 	var __webpack_module_cache__ = {};
+/******/ 	
+/******/ 	// The require function
+/******/ 	function __webpack_require__(moduleId) {
+/******/ 		// Check if module is in cache
+/******/ 		var cachedModule = __webpack_module_cache__[moduleId];
+/******/ 		if (cachedModule !== undefined) {
+/******/ 			return cachedModule.exports;
+/******/ 		}
+/******/ 		// Create a new module (and put it into the cache)
+/******/ 		var module = __webpack_module_cache__[moduleId] = {
+/******/ 			// no module.id needed
+/******/ 			// no module.loaded needed
+/******/ 			exports: {}
+/******/ 		};
+/******/ 	
+/******/ 		// Execute the module function
+/******/ 		__webpack_modules__[moduleId](module, module.exports, __webpack_require__);
+/******/ 	
+/******/ 		// Return the exports of the module
+/******/ 		return module.exports;
+/******/ 	}
+/******/ 	
+/************************************************************************/
 /******/ 	
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module can't be inlined because the eval devtool is used.
-/******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__["./src/index.ts"]();
+/******/ 	var __webpack_exports__ = __webpack_require__("./src/index.ts");
 /******/ 	
 /******/ })()
 ;
