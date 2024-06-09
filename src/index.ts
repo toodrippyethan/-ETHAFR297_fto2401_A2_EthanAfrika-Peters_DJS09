@@ -1,52 +1,44 @@
-// Tuple Types [string, string, number]
-// Specific number of items in array and specific item types
-// 1. Replace the contact values to take an array that contains a
-// phone number and email.
-// 2. Check the inferred Type that appears in the Object Type.
-// 3. Overwrite the inferred type to be a Tuple.
-
-const propertyContainer = document.querySelector('.properties') as HTMLElement;
+// Any Type
+// 1. Add a description property to Omars review, and give it a value.
+// 2. Next try addressing what TypeScript does not like.
+// 3. Now, imagine we DON'T know what kind of review object we are going to
+// get next.
 
 import { showReviewTotal, populateUser } from './utils';
+import { Permissions, LoyaltyUser } from './enums';
+const propertyContainer = document.querySelector('.properties') as HTMLElement;
+const footer = document.querySelector('.footer') as HTMLElement;
+
 let isOpen: boolean;
 
 // Reviews
-const reviews: {
-	name: string;
-	stars: number;
-	loyaltyUser: boolean;
-	date: string;
-}[] = [
+const reviews: any[] = [
 	{
 		name: 'Sheia',
 		stars: 5,
-		loyaltyUser: true,
+		loyaltyUser: LoyaltyUser.GOLD_USER,
 		date: '01-04-2021',
 	},
 	{
 		name: 'Andrzej',
 		stars: 3,
-		loyaltyUser: false,
+		loyaltyUser: LoyaltyUser.BRONZE_USER,
 		date: '28-03-2021',
 	},
 	{
 		name: 'Omar',
 		stars: 4,
-		loyaltyUser: true,
+		loyaltyUser: LoyaltyUser.SILVER_USER,
 		date: '27-03-2021',
+		description: 'Great hosts, location was a bit further than said',
 	},
 ];
 
 // User
-const you: {
-	firstName: string;
-	lastName: string;
-	isReturning: boolean;
-	age: number;
-	stayedAt: string[];
-} = {
+const you = {
 	firstName: 'Bobby',
 	lastName: 'Brown',
+	permissions: Permissions.ADMIN,
 	isReturning: true,
 	age: 35,
 	stayedAt: ['florida-home', 'oman-flat', 'tokyo-bungalow'],
@@ -67,7 +59,7 @@ const properties: {
 	isAvailable: boolean;
 }[] = [
 	{
-		image: 'images/colombia-property.jpg',
+		image: './images/colombia-property.jpg',
 		title: 'Colombian Shack',
 		price: 45,
 		location: {
@@ -76,11 +68,11 @@ const properties: {
 			code: 45632,
 			country: 'Colombia',
 		},
-		contact: [+1123495082908, 'marywinkle@gmail.com'],
+		contact: [+112343823978921, 'marywinkle@gmail.com'],
 		isAvailable: true,
 	},
 	{
-		image: 'images/poland-property.jpg',
+		image: './images/poland-property.jpg',
 		title: 'Polish Cottage',
 		price: 34,
 		location: {
@@ -89,11 +81,11 @@ const properties: {
 			code: 343903,
 			country: 'Poland',
 		},
-		contact: [+1123495082908, 'garydavis@hotmail.com'],
+		contact: [+1298239028490830, 'garydavis@hotmail.com'],
 		isAvailable: false,
 	},
 	{
-		image: 'images/london-property.jpg',
+		image: './images/london-property.jpg',
 		title: 'London Flat',
 		price: 23,
 		location: {
@@ -102,7 +94,7 @@ const properties: {
 			code: 35433,
 			country: 'United Kingdom',
 		},
-		contact: [+1123495082908, 'andyluger@aol.com'],
+		contact: [+34829374892553, 'andyluger@aol.com'],
 		isAvailable: true,
 	},
 ];
@@ -122,3 +114,6 @@ for (let i = 0; i < properties.length; i++) {
 	card.appendChild(image);
 	propertyContainer.appendChild(card);
 }
+
+let currentLocation: [string, string, number] = ['London', '11.03', 17];
+footer.innerHTML = currentLocation[0] + ' ' + currentLocation[1] + ' ' + currentLocation[2] + '°';
