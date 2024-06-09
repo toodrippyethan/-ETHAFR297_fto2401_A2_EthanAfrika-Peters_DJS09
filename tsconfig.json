@@ -1,18 +1,16 @@
 {
-    "compilerOptions": {
-      "allowImportingTsExtensions": true,
-      "noEmit": true,
-      "target": "es5",
-      "module": "commonjs",
-      "strict": true,
-      "outDir": "./dist",
-      "esModuleInterop": true
-    },
-    "include": [
-      "src/index.ts"
-, "src/index.ts"    ],
-    "exclude": [
-      "./dist"
-    ]
-  }
-  
+	"compilerOptions": {
+		"target": "es5",
+		"module": "commonjs",
+		"strict": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true
+	},
+	"include": [
+    "src/**/*"
+  ],
+	"exclude": [
+    "node_modules"
+  ]
+}
