@@ -1,15 +1,14 @@
-// Any Type
-// 1. Add a description property to Omars review, and give it a value.
-// 2. Next try addressing what TypeScript does not like.
-// 3. Now, imagine we DON'T know what kind of review object we are going to
-// get next.
+// Function Return Types + Void Types mini-challenge
+// Instead of having a long 'review total 3', can you make the line say '3 reviews', or '1 review'
+// if there is only one? Use a function to do this and assign a type to the functions return.
 
-import { showReviewTotal, populateUser } from './utils';
+import { showReviewTotal, populateUser, showDetails } from './utils';
+import { Price, Country } from './types';
 import { Permissions, LoyaltyUser } from './enums';
 const propertyContainer = document.querySelector('.properties') as HTMLElement;
 const footer = document.querySelector('.footer') as HTMLElement;
 
-let isOpen: boolean;
+let isLoggedIn: boolean;
 
 // Reviews
 const reviews: any[] = [
@@ -30,11 +29,10 @@ const reviews: any[] = [
 		stars: 4,
 		loyaltyUser: LoyaltyUser.SILVER_USER,
 		date: '27-03-2021',
-		description: 'Great hosts, location was a bit further than said',
+		description: 'Great hosts, location was a bit further than said.',
 	},
 ];
 
-// User
 const you = {
 	firstName: 'Bobby',
 	lastName: 'Brown',
@@ -112,6 +110,7 @@ for (let i = 0; i < properties.length; i++) {
 	const image = document.createElement('img');
 	image.setAttribute('src', properties[i].image);
 	card.appendChild(image);
+	showDetails(you.permissions, card, properties[i].price);
 	propertyContainer.appendChild(card);
 }
 
