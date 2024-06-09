@@ -1,17 +1,24 @@
-// Function Return Types + Void Types mini-challenge
-// Instead of having a long 'review total 3', can you make the line say '3 reviews', or '1 review'
-// if there is only one? Use a function to do this and assign a type to the functions return.
+// Classes
+// As with other JavaScript language features, TypeScript adds type
+// annotations and other syntax to allow you to express relationships
+// between classes and other types.
+// 1. Add a Class that will let us create a main image, it should allow us to
+// store the reviews, the src and title.
 
-import { showReviewTotal, populateUser, showDetails } from './utils';
+import { showReviewTotal, populateUser, showDetails, getTopTwoReviews } from './utils';
 import { Price, Country } from './types';
+import { Review } from './interfaces';
 import { Permissions, LoyaltyUser } from './enums';
 const propertyContainer = document.querySelector('.properties') as HTMLElement;
+const reviewContainer = document.querySelector('.reviews') as HTMLElement;
+const container = document.querySelector('.container') as HTMLElement;
+const button = document.querySelector('button') as HTMLElement;
 const footer = document.querySelector('.footer') as HTMLElement;
 
 let isLoggedIn: boolean;
 
 // Reviews
-const reviews: any[] = [
+const reviews: Review[] = [
 	{
 		name: 'Sheia',
 		stars: 5,
@@ -29,7 +36,6 @@ const reviews: any[] = [
 		stars: 4,
 		loyaltyUser: LoyaltyUser.SILVER_USER,
 		date: '27-03-2021',
-		description: 'Great hosts, location was a bit further than said.',
 	},
 ];
 
@@ -114,5 +120,53 @@ for (let i = 0; i < properties.length; i++) {
 	propertyContainer.appendChild(card);
 }
 
+//Broken code
+let count = 0;
+function addReviews(
+	array: {
+		name: string;
+		stars: number;
+		loyaltyUser: LoyaltyUser;
+		date: string;
+	}[]
+): void {
+	if (!count) {
+		count++;
+		const topTwo = getTopTwoReviews(array);
+		for (let i = 0; i < topTwo.length; i++) {
+			const card = document.createElement('div');
+			card.classList.add('review-card');
+			card.innerHTML = topTwo[i].stars + ' stars from ' + topTwo[i].name;
+			reviewContainer.appendChild(card);
+		}
+		container.removeChild(button);
+	}
+}
+
+button.addEventListener('click', () => addReviews(reviews));
+
 let currentLocation: [string, string, number] = ['London', '11.03', 17];
 footer.innerHTML = currentLocation[0] + ' ' + currentLocation[1] + ' ' + currentLocation[2] + '°';
+
+//Classes
+// class Car {
+//     make: string
+//     year: number
+//     color: string
+//     constructor(make: string, year: number, color: string) {
+//         this.make = make
+//         this.year = year
+//         this.color = color
+//     }
+// }
+
+class MainProperty {
+	src: string;
+	title: string;
+	reviews: Review[];
+	constructor(src: string, title: string, reviews: Review[]) {
+		this.src = src;
+		this.title = title;
+		this.reviews = reviews;
+	}
+}
