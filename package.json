@@ -1,6 +1,9 @@
 {
   "name": "project",
   "devDependencies": {
+    "css-loader": "^7.1.2",
+    "file-loader": "^6.2.0",
+    "style-loader": "^4.0.0",
     "ts-loader": "^9.5.1",
     "typescript": "^5.4.5",
     "webpack": "^5.2.0",
@@ -9,5 +12,8 @@
   "scripts": {
     "build": "webpack",
     "watch": "webpack -w"
+  },
+  "dependencies": {
+    "webpack-dev-server": "^5.0.4"
   }
 }
