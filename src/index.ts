@@ -44,7 +44,7 @@ const you = {
 // Array of Properties
 const properties: Property[] = [
 	{
-		image: './images/colombia-property.jpg',
+		image: '../src/images/colombia-property.jpg',
 		title: 'Colombian Shack',
 		price: 45,
 		location: {
@@ -57,7 +57,7 @@ const properties: Property[] = [
 		isAvailable: true,
 	},
 	{
-		image: './images/poland-property.jpg',
+		image: '../src/images/poland-property.jpg',
 		title: 'Polish Cottage',
 		price: 30,
 		location: {
@@ -70,7 +70,7 @@ const properties: Property[] = [
 		isAvailable: false,
 	},
 	{
-		image: './images/london-property.jpg',
+		image: '../src/images/london-property.jpg',
 		title: 'London Flat',
 		price: 25,
 		location: {
@@ -83,7 +83,7 @@ const properties: Property[] = [
 		isAvailable: true,
 	},
 	{
-		image: './images/malaysian-hotel.jpg',
+		image: '../src/images/malaysian-hotel.jpeg',
 		title: 'Malia Hotel',
 		price: 35,
 		location: {
@@ -134,7 +134,7 @@ button.addEventListener('click', () => addReviews(reviews));
 let currentLocation: [string, string, number] = ['London', '11.03', 17];
 footer.innerHTML = currentLocation[0] + ' ' + currentLocation[1] + ' ' + currentLocation[2] + '°';
 
-let yourMainProperty = new MainProperty('./images/italian-property.jpg', 'Italian House', [
+let yourMainProperty = new MainProperty('../src/images/italian-property.jpg', 'Italian House', [
 	{
 		name: 'Olive',
 		stars: 5,
